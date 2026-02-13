@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Search, Filter, ShoppingCart } from 'lucide-react';
 import apiService from '../../services/apiService';
-import socketService from '../../services/socketService';
 import { useMenuStore, useCartStore, useAuthStore } from '../../store/useStore';
-import type { Category, MenuItem, DietaryType } from '../../types';
+import type { MenuItem } from '../../types';
 import OTPVerificationModal from '../../components/customer/OTPVerificationModal';
 import ItemCustomizationModal from '../../components/customer/ItemCustomizationModal';
 import CartView from '../../components/customer/CartView';
@@ -12,11 +11,9 @@ import BottomNav from '../../components/customer/BottomNav';
 
 const MenuPage: React.FC = () => {
     const { restaurantId, tableId } = useParams<{ restaurantId: string; tableId: string }>();
-    const navigate = useNavigate();
-
     const { categories, selectedCategory, searchQuery, dietaryFilter, setCategories, setSelectedCategory, setSearchQuery, setDietaryFilter } = useMenuStore();
-    const { items, getItemCount } = useCartStore();
-    const { customer, sessionToken } = useAuthStore();
+    const { getItemCount } = useCartStore();
+    const { customer } = useAuthStore();
 
     const [restaurant, setRestaurant] = useState<any>(null);
     const [table, setTable] = useState<any>(null);

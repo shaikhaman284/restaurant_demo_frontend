@@ -33,7 +33,7 @@ const CartView: React.FC<Props> = ({ onClose, restaurantId, tableId }) => {
                 specialInstructions: item.specialInstructions,
             }));
 
-            const response = await apiService.post('/orders', {
+            await apiService.post('/orders', {
                 restaurantId,
                 tableId,
                 customerId: customer.id,

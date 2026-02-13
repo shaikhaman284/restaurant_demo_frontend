@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { LoginResponse, Customer, CartItem, Order, Table, Category, MenuItem } from '../types';
+import type { LoginResponse, Customer, CartItem, Order, Table, Category } from '../types';
 
 interface AuthState {
     // Staff auth

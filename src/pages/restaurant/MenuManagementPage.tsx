@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, Edit, Trash2, Save, X } from 'lucide-react';
+import { ArrowLeft, Plus, Edit, Trash2, X } from 'lucide-react';
 import apiService from '../../services/apiService';
 import { useAuthStore } from '../../store/useStore';
-import type { Category, MenuItem, ItemVariation, ItemAddon } from '../../types';
+import type { Category, MenuItem } from '../../types';
 
 const MenuManagementPage: React.FC = () => {
     const navigate = useNavigate();
@@ -122,8 +122,8 @@ const MenuManagementPage: React.FC = () => {
                                     <div
                                         key={category.id}
                                         className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${selectedCategory === category.id
-                                                ? 'bg-primary-50 border-2 border-primary-500'
-                                                : 'bg-gray-50 hover:bg-gray-100'
+                                            ? 'bg-primary-50 border-2 border-primary-500'
+                                            : 'bg-gray-50 hover:bg-gray-100'
                                             }`}
                                         onClick={() => setSelectedCategory(category.id)}
                                     >
@@ -180,8 +180,8 @@ const MenuManagementPage: React.FC = () => {
                                                         >
                                                             <div
                                                                 className={`w-2 h-2 rounded-full ${item.dietary === 'VEG'
-                                                                        ? 'bg-green-600'
-                                                                        : 'bg-red-600'
+                                                                    ? 'bg-green-600'
+                                                                    : 'bg-red-600'
                                                                     }`}
                                                             />
                                                         </div>

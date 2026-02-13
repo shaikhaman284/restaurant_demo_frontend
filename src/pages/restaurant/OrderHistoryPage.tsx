@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Search, Filter, Calendar } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import apiService from '../../services/apiService';
 import { useAuthStore } from '../../store/useStore';
 import type { Order } from '../../types';
@@ -248,8 +248,8 @@ const OrderHistoryPage: React.FC = () => {
                                                 key={page}
                                                 onClick={() => setFilters(prev => ({ ...prev, page }))}
                                                 className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${page === filters.page
-                                                        ? 'z-10 bg-primary-50 border-primary-500 text-primary-600'
-                                                        : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                                                    ? 'z-10 bg-primary-50 border-primary-500 text-primary-600'
+                                                    : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
                                                     }`}
                                             >
                                                 {page}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { UtensilsCrossed, Receipt, FileText } from 'lucide-react';
+import { UtensilsCrossed, Receipt } from 'lucide-react';
 
 interface Props {
     restaurantId: string;
