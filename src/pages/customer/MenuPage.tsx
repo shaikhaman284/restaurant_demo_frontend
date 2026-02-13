@@ -37,7 +37,7 @@ const MenuPage: React.FC = () => {
             setRestaurant(restaurantRes.data);
 
             // Load table
-            const tableRes = await apiService.get(`/tables/${tableId}`);
+            const tableRes = await apiService.get(`/tables/public/${tableId}`);
             setTable(tableRes.data);
 
             // Load menu
