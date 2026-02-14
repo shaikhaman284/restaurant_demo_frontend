@@ -13,6 +13,7 @@ const OTPVerificationModal: React.FC<Props> = ({ onClose, tableId }) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('+91');
     const [otp, setOTP] = useState('');
+    const [receivedOTP, setReceivedOTP] = useState(''); // Store OTP for demo display
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -26,8 +27,11 @@ const OTPVerificationModal: React.FC<Props> = ({ onClose, tableId }) => {
         try {
             const response = await apiService.post('/auth/customer/request-otp', { phone, name });
 
-            // Display OTP in browser console for demo purposes
+            // Store OTP for demo display
             if (response.data.otp) {
+                setReceivedOTP(response.data.otp);
+
+                // Also display OTP in browser console for demo purposes
                 console.clear();
                 console.log('%c╔════════════════════════════════════════╗', 'color: #10b981; font-weight: bold; font-size: 14px;');
                 console.log('%c║          🔐 YOUR OTP CODE             ║', 'color: #10b981; font-weight: bold; font-size: 14px;');
@@ -36,7 +40,7 @@ const OTPVerificationModal: React.FC<Props> = ({ onClose, tableId }) => {
                 console.log(`%c║  Phone: ${phone}                 ║`, 'color: #10b981; font-weight: bold; font-size: 14px;');
                 console.log(`%c║  Expires in: ${response.data.expiresIn} minutes              ║`, 'color: #10b981; font-weight: bold; font-size: 14px;');
                 console.log('%c╚════════════════════════════════════════╝', 'color: #10b981; font-weight: bold; font-size: 14px;');
-                console.log('%c\n👆 Copy the OTP above and paste it in the verification field', 'color: #f59e0b; font-weight: bold; font-size: 12px;');
+                console.log('%c\n👆 OTP is also displayed on screen for demo purposes', 'color: #f59e0b; font-weight: bold; font-size: 12px;');
             }
 
             setStep('otp');
@@ -128,8 +132,26 @@ const OTPVerificationModal: React.FC<Props> = ({ onClose, tableId }) => {
                     </form>
                 ) : (
                     <form onSubmit={handleVerifyOTP} className="space-y-4">
-                        <p className="text-sm text-gray-600 mb-4">
-                            OTP sent to {phone}. <strong>Check your browser console (F12)</strong> for the OTP code.
+                        {/* Demo OTP Display Banner */}
+                        {receivedOTP && (
+                            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white p-4 rounded-lg shadow-lg border-2 border-emerald-400">
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="text-sm font-semibold uppercase tracking-wide">🔐 Demo OTP Code</span>
+                                    <span className="text-xs bg-white/20 px-2 py-1 rounded">For Testing</span>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold tracking-widest mb-1 font-mono">
+                                        {receivedOTP}
+                                    </div>
+                                    <p className="text-xs text-emerald-100">
+                                        Copy this code and paste it below
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
+                        <p className="text-sm text-gray-600">
+                            OTP sent to {phone}
                         </p>
 
                         <div>
